@@ -20,8 +20,6 @@ class DatabaseSeeder extends Seeder
             'email' => 'sales@coffee.shop',
         ]);
 
-        CoffeeType::factory()->create([
-            'name' => 'Gold',
-        ]);
+        collect(['Gold', 'Arabic'])->each(fn (string $name) => CoffeeType::factory()->create(['name' => $name]));
     }
 }

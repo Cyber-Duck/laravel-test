@@ -21,6 +21,7 @@ class Sale extends Model
         'unit_price',
         'coffee_type_id',
         'agent_id',
+        'selling_price',
     ];
 
     /**
