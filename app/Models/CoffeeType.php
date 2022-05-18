@@ -19,7 +19,7 @@ class CoffeeType extends Model
     protected $fillable = [
         'name',
         'profit_margin',
-        'shipping_cost',
+        'shipping_costs',
     ];
 
     /**

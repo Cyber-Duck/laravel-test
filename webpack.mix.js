@@ -16,3 +16,15 @@ mix.js('resources/js/app.js', 'public/js').postCss('resources/css/app.css', 'pub
     require('tailwindcss'),
     require('autoprefixer'),
 ]);
+
+mix.js('resources/js/ajax.js', 'public/js');
+
+
+mix.webpackConfig({
+    output: {
+        library: 'ajax',
+        libraryTarget: 'umd',
+        umdNamedDefine: true, // optional
+        globalObject: 'this' // optional
+    }
+})
