@@ -2,7 +2,7 @@ version: '3'
 services:
   apache:
     container_name: coffee_shop_apache
-    image: webdevops/apache:ubuntu-16.04
+    image: runner668/php-apache:7.4
     environment:
       WEB_DOCUMENT_ROOT: /var/www/public
       WEB_ALIAS_DOMAIN: rcoa.localhost
