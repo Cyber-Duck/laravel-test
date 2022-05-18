@@ -1,3 +1,20 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+
+.sales-form-field {
+    margin-right: 2rem;
+}
+
+.w-30 {
+    width: 7.5rem;
+}
+
+.selling-price{
+    border: none !important;
+    margin-top: 0.25rem;
+}
+
+.inline-flex{
+    justify-content: space-between;
+}

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedInteger('quantity')->nullable(false);
             $table->unsignedDecimal('unit_price')->nullable(false);
+            $table->unsignedDecimal('selling_price')->nullable(false);
             $table->unsignedBigInteger('coffee_type_id')->nullable(false);
             $table->unsignedBigInteger('agent_id')->nullable(false);
             $table->timestamps();
