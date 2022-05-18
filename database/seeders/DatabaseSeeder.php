@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\CoffeeType;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -17,6 +18,10 @@ class DatabaseSeeder extends Seeder
         User::factory()->create([
             'name' => 'Sales Agent',
             'email' => 'sales@coffee.shop',
+        ]);
+
+        CoffeeType::factory()->create([
+            'name' => 'Gold',
         ]);
     }
 }
