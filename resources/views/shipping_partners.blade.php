@@ -62,3 +62,4 @@
         </div>
     </div>
 </x-app-layout>
+<script src="{{ asset('js/shipping-costs.js')}}"></script>

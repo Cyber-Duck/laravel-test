@@ -87,4 +87,4 @@
         </div>
     </div>
 </x-app-layout>
-<script src="{{ asset('js/ajax.js')}}"></script>
+<script src="{{ asset('js/coffee-sales.js')}}"></script>

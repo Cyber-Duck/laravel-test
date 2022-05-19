@@ -17,14 +17,5 @@ mix.js('resources/js/app.js', 'public/js').postCss('resources/css/app.css', 'pub
     require('autoprefixer'),
 ]);
 
-mix.js('resources/js/ajax.js', 'public/js');
-
-
-mix.webpackConfig({
-    output: {
-        library: 'ajax',
-        libraryTarget: 'umd',
-        umdNamedDefine: true, // optional
-        globalObject: 'this' // optional
-    }
-})
+mix.js('resources/js/coffee-sales.js', 'public/js');
+mix.js('resources/js/shipping-costs.js', 'public/js');

@@ -30,7 +30,6 @@ const quantity = document.querySelector('#quantity');
 const unitCost = document.querySelector('#unit_cost');
 const sellersCost = document.querySelector('.selling-price');
 const recordSaleButton = document.querySelector('#record_sale_button');
-const createSaleForm = document.querySelector('#create_sale_form');
 
 type.addEventListener('change', event => {
     getSellerCost(event);
@@ -44,6 +43,6 @@ unitCost.addEventListener('input', event => {
     getSellerCost(event);
 });
 
-document.addEventListener('submit', () => {
+document.addEventListener('submit', (event) => {
     recordSaleButton.disabled = true;
 });
