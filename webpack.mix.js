@@ -16,3 +16,6 @@ mix.js('resources/js/app.js', 'public/js').postCss('resources/css/app.css', 'pub
     require('tailwindcss'),
     require('autoprefixer'),
 ]);
+
+mix.js('resources/js/coffee-sales.js', 'public/js');
+mix.js('resources/js/shipping-costs.js', 'public/js');
