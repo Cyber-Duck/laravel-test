@@ -10,6 +10,8 @@ use App\Jobs\CreateSale;
 use App\Models\CoffeeType;
 use App\Models\Sale;
 use App\Providers\RouteServiceProvider;
+use League\Fractal\Pagination\IlluminatePaginatorAdapter;
+use Spatie\Fractalistic\ArraySerializer;
 
 class CoffeeSaleController extends Controller
 {
@@ -17,12 +19,17 @@ class CoffeeSaleController extends Controller
     {
 
         $coffeeTypes = CoffeeType::all();
-        $sales = Sale::all()->slice(($request->page() - 1) * $request->perPage(), $request->perPage());
+        $paginator = Sale::paginate();
+        $sales = $paginator->getCollection();
+
         return view(
             'coffee_sales',
             [
                 'coffeeTypeOptions' => $coffeeTypes->mapWithKeys(fn($type) => [$type->id => $type->name]),
-                'sales' => fractal($sales, new SaleTransformer()),
+                'sales' => fractal($sales, new SaleTransformer)
+                    ->serializeWith(new ArraySerializer)
+                    ->paginateWith(new IlluminatePaginatorAdapter($paginator))
+                    ->toArray(),
             ]
         );
     }

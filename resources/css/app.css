@@ -18,3 +18,16 @@
 .inline-flex{
     justify-content: space-between;
 }
+
+td{
+    text-align: center;
+}
+
+tr{
+    border-spacing: 3em;
+}
+
+td, th{
+    padding-bottom: 1.25rem;
+}
+
