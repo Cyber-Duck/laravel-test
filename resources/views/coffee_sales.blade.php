@@ -60,6 +60,7 @@
                         <tr>
                             <th>Product</th>
                             <th>Quantity</th>
+                            <th>Shipping Cost (£)</th>
                             <th>Unit Cost (£)</th>
                             <th>Selling Price (£)</th>
                             <th>Sold At</th>
@@ -69,6 +70,7 @@
                             <tr>
                                 <td>{{ $sale['product'] }}</td>
                                 <td>{{ $sale['quantity'] }}</td>
+                                <td>{{ $sale['shipping_cost'] }}</td>
                                 <td>{{ $sale['unit_price'] }}</td>
                                 <td>{{ $sale['selling_price']}}</td>
                                 <td>{{ $sale['sold_at']}}</td>

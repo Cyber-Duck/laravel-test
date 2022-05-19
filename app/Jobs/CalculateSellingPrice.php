@@ -3,6 +3,7 @@
 namespace App\Jobs;
 
 use App\Models\CoffeeType;
+use App\Models\ShippingCost;
 
 class CalculateSellingPrice
 {
@@ -16,7 +17,10 @@ class CalculateSellingPrice
 
     public function handle()
     {
-        $sellersCostRaw = (($this->quantity * $this->unitPrice) / (1 - $this->coffeeType->profit_margin)) + $this->coffeeType->shipping_costs;
+        // Get the latest active shipping cost
+        $shippingCost = ShippingCost::where('active', true)->orderBy('id', 'DESC')->firstOrFail();
+
+        $sellersCostRaw = (($this->quantity * $this->unitPrice) / (1 - $this->coffeeType->profit_margin)) + $shippingCost->cost;
         return ceil($sellersCostRaw * 100) / 100; // always round up the nearest 100th
     }
 }

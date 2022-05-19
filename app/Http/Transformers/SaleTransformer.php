@@ -14,7 +14,8 @@ class SaleTransformer extends TransformerAbstract
             'quantity' => $sale->quantity,
             'unit_price' => $sale->unit_price,
             'selling_price' => $sale->selling_price,
-            'sold_at' => $sale->created_at
+            'sold_at' => $sale->created_at,
+            'shipping_cost' => $sale->shipmentCost->cost
         ];
     }
 }

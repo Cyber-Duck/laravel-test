@@ -4,9 +4,19 @@ namespace Tests\Unit\Jobs;
 
 use App\Jobs\CalculateSellingPrice;
 use App\Models\CoffeeType;
+use App\Models\ShippingCost;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class CalculateSellersCostTest extends \Tests\TestCase
 {
+    use RefreshDatabase;
+
+    public function setUp(): void
+    {
+        parent::setUp();
+        ShippingCost::factory()->create(['active' => true, 'cost' => 10.00]);
+    }
+
     /**
      * @dataProvider costCalculatorParams
      */
@@ -20,7 +30,6 @@ class CalculateSellersCostTest extends \Tests\TestCase
         $coffeeType = new CoffeeType([
             'name' => 'test',
             'profit_margin' => 0.25,
-            'shipping_costs' => 10.00
         ]);
 
         return [

@@ -3,6 +3,7 @@
 namespace Tests\Feature\Api;
 
 use App\Models\CoffeeType;
+use App\Models\ShippingCost;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -10,11 +11,16 @@ class CalculateCostTest extends TestCase
 {
     use RefreshDatabase;
     private CoffeeType $coffeeType;
+    private ShippingCost $shippingCost;
 
     public function setUp(): void
     {
         parent::setUp();
         $this->coffeeType = CoffeeType::factory()->create(['name' => 'French Blend']);
+        $this->shippingCost = ShippingCost::factory()->create([
+            'active' => true,
+            'cost' => 10.00
+        ]);
     }
 
     public function test_200_response_with_valid_params()

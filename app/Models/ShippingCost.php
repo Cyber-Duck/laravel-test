@@ -4,10 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Notifications\Notifiable;
 
-class Sale extends Model
+class ShippingCost extends Model
 {
     use HasFactory, Notifiable;
 
@@ -17,12 +17,8 @@ class Sale extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'quantity',
-        'unit_price',
-        'coffee_type_id',
-        'agent_id',
-        'selling_price',
-        'shipping_cost_id'
+        'active',
+        'cost',
     ];
 
     /**
@@ -42,18 +38,8 @@ class Sale extends Model
         'updated_at' => 'datetime',
     ];
 
-    public function agent(): BelongsTo
+    public function sales(): HasMany
     {
-        return $this->belongsTo(User::class, 'agent_id');
-    }
-
-    public function coffeeType(): BelongsTo
-    {
-        return $this->belongsTo(CoffeeType::class);
-    }
-
-    public function shipmentCost(): BelongsTo
-    {
-        return $this->belongsTo(ShippingCost::class, 'shipping_cost_id');
+        return $this->hasMany(Sale::class, 'shipping_cost_id', 'id');
     }
 }
