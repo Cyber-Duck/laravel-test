@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Web\CoffeeSaleController;
+use App\Http\Controllers\Web\ShippingCostController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,13 +21,14 @@ Route::get('/', function () {
 
 Route::redirect('/dashboard', '/sales');
 
-Route::prefix('sales')->middleware(['auth'])->group(function(){
+Route::prefix('sales')->middleware(['auth'])->group(function () {
     Route::get('', [CoffeeSaleController::class, 'index'])->name('coffee.sales');
     Route::post('', [CoffeeSaleController::class, 'create'])->name('coffee.sales.create');
 });
 
-Route::get('/shipping-partners', function () {
-    return view('shipping_partners');
-})->middleware(['auth'])->name('shipping.partners');
+Route::prefix('shipping-partners')->middleware(['auth'])->group(function () {
+    Route::get('', [ShippingCostController::class, 'index'])->name('shipping.costs');
+    Route::post('', [ShippingCostController::class, 'create'])->name('shipping.cost.create');
+});
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
