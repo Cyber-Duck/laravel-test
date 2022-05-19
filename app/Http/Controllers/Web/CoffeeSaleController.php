@@ -38,7 +38,7 @@ class CoffeeSaleController extends Controller
     {
         dispatch_sync(
             new CreateSale(
-                $request->user()->id,
+                $request->user()?->id,
                 $request['coffee_type'],
                 $request['quantity'],
                 $request['unit_cost'],
