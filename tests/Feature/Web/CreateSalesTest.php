@@ -58,7 +58,7 @@ class CreateSalesTest extends TestCase
 
         $this->post(
             '/sales',
-            ['quantity' => 0.2, 'unit_cost' => 10.50, 'coffee_type' =>  $this->coffeeType->id, 'selling_price' => 35.50],
+            ['quantity' => 0.2, 'unit_cost' => 10.50, 'coffee_type' => $this->coffeeType->id, 'selling_price' => 35.50],
             ['Accept' => 'application/json']
         )->assertStatus(422);
     }
@@ -67,13 +67,13 @@ class CreateSalesTest extends TestCase
     {
         $this->post(
             '/sales',
-            ['quantity' => 10, 'unit_cost' => 0.0, 'coffee_type' =>  $this->coffeeType->id, 'selling_price' => 35.50],
+            ['quantity' => 10, 'unit_cost' => 0.0, 'coffee_type' => $this->coffeeType->id, 'selling_price' => 35.50],
             ['Accept' => 'application/json']
         )->assertStatus(422);
 
         $this->post(
             '/sales',
-            ['quantity' => 1, 'unit_cost' => -10.50, 'coffee_type' =>  $this->coffeeType->id, 'selling_price' => 35.50],
+            ['quantity' => 1, 'unit_cost' => -10.50, 'coffee_type' => $this->coffeeType->id, 'selling_price' => 35.50],
             ['Accept' => 'application/json']
         )->assertStatus(422);
     }

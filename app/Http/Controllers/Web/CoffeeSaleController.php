@@ -17,7 +17,6 @@ class CoffeeSaleController extends Controller
 {
     public function index(ListSalesRequest $request)
     {
-
         $coffeeTypes = CoffeeType::all();
         $paginator = Sale::paginate();
         $sales = $paginator->getCollection();

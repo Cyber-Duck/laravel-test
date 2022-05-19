@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests\Web;
 
-use App\Http\Requests\PaginatesRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
 class CreateSaleRequest extends FormRequest

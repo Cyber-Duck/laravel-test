@@ -10,6 +10,7 @@ use Tests\TestCase;
 class CalculateCostTest extends TestCase
 {
     use RefreshDatabase;
+
     private CoffeeType $coffeeType;
     private ShippingCost $shippingCost;
 

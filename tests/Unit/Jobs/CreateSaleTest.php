@@ -2,7 +2,6 @@
 
 namespace Tests\Unit\Jobs;
 
-use App\Jobs\CalculateSellingPrice;
 use App\Jobs\CreateSale;
 use App\Models\CoffeeType;
 use App\Models\ShippingCost;
