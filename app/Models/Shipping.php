@@ -38,4 +38,13 @@ class Shipping extends Model
             return $shipping->id;
         }
     }
+
+    /**
+     * Defines the has many relationship to sales
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function sales()
+    {
+        return $this->hasMany(Sale::class);
+    }
 }
