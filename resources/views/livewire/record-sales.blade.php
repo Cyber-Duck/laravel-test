@@ -31,7 +31,21 @@
         </form>
     </div>
 
+    @if (count($sales))
+        <table style="width: 100%;">
+            <tr>
+                <th style="text-align: left;">Quantity</th>
+                <th style="text-align: left;">Unit Cost</th>
+                <th style="text-align: left;">Selling Price</th>
+            </tr>
 
-
-
+            @foreach ($sales as $sale)
+                <tr>
+                    <td>{{ $sale->quantity }}</td>
+                    <td>£{{ $sale->unit_cost }}</td>
+                    <td>£{{ $sale->selling_price }}</td>
+                </tr>
+            @endforeach
+        </table>
+    @endif
 </div>

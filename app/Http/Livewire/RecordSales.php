@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Sale;
 use Livewire\Component;
 
 class RecordSales extends Component
@@ -30,13 +31,20 @@ class RecordSales extends Component
 
     public function submit()
     {
+        $this->validate();
 
+        Sale::recordSale($this->quantity, $this->unitCost, $this->sellingPrice);
 
-
+        $this->quantity = null;
+        $this->unitCost = null;
+        $this->sellingPrice = null;
     }
 
     public function render()
     {
-        return view('livewire.record-sales');
+        $sales = Sale::latest()
+            ->get();
+
+        return view('livewire.record-sales', compact('sales'));
     }
 }
