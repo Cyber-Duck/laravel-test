@@ -29,6 +29,7 @@ class SaleTest extends TestCase
         $this->assertEquals(1, $result->quantity);
         $this->assertEquals(2, $result->unit_cost);
         $this->assertEquals(3, $result->selling_price);
+        $this->assertNotNull($result->shipping_id);
         $this->assertNotNull($result->created_at);
         $this->assertNotNull($result->updated_at);
         $this->assertNotNull($result->id);

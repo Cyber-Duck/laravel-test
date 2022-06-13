@@ -12,6 +12,7 @@ class Sale extends Model
     protected $fillable = [
         'quantity',
         'unit_cost',
+        'shipping_id',
         'selling_price',
     ];
 
@@ -36,10 +37,22 @@ class Sale extends Model
     {
         $product = Product::firstOrFail();
 
+        $shippingId = Shipping::getId();
+
         return $product->sales()->create([
             'quantity' => $quantity,
             'unit_cost' => $unitCost,
+            'shipping_id' => $shippingId,
             'selling_price' => $sellingPrice,
         ]);
+    }
+
+    /**
+     * Defines the belongs to relationship to shippings
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function shipping()
+    {
+        return $this->belongsTo(Shipping::class);
     }
 }

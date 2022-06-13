@@ -49,6 +49,7 @@
             <tr>
                 <th style="text-align: left;">Product</th>
                 <th style="text-align: left;">Quantity</th>
+                <th style="text-align: left;">Shipping Cost</th>
                 <th style="text-align: left;">Unit Cost</th>
                 <th style="text-align: left;">Selling Price</th>
                 <th style="text-align: left;">Sold At</th>
@@ -58,6 +59,7 @@
                 <tr>
                     <td>{{ $sale->product ? $sale->product->name : null }}</td>
                     <td>{{ $sale->quantity }}</td>
+                    <td>£{{ $sale->shipping ? $sale->shipping->cost : null }}</td>
                     <td>£{{ $sale->unit_cost }}</td>
                     <td>£{{ $sale->selling_price }}</td>
                     <td>{{ $sale->created_at ? $sale->created_at->format('jS F Y H:i') : null }}</td>

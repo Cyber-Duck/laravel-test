@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\Product;
 use App\Models\Sale;
+use App\Models\Shipping;
 use Livewire\Component;
 
 class RecordSales extends Component
@@ -12,13 +13,18 @@ class RecordSales extends Component
 
     public $margin = 0.25;
 
-    public $shippingCost = 10;
+    public $shippingCost;
 
     protected $rules = [
         'product' => 'required|numeric|exists:products,id',
         'quantity' => 'required|numeric|min:1',
         'unitCost' => 'required|numeric|min:0.01',
     ];
+
+    public function mount()
+    {
+        $this->shippingCost = Shipping::getCost();
+    }
 
     public function updated()
     {
