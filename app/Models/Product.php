@@ -13,4 +13,13 @@ class Product extends Model
         'name',
         'margin',
     ];
+
+    /**
+     * Defines the has many relationship to sales
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function sales()
+    {
+        return $this->hasMany(Sale::class);
+    }
 }

@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('sales', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('product_id')->index();
             $table->integer('quantity');
             $table->decimal('unit_cost');
             $table->decimal('selling_price');

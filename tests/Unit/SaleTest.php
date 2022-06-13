@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use App\Models\Product;
 use App\Models\Sale;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -17,9 +18,14 @@ class SaleTest extends TestCase
      */
     public function test_record_sale()
     {
-        $result = Sale::recordSale(1, 2, 3);
+        $product = Product::first();
+
+        $result = Sale::recordSale($product->id, 1, 2, 3);
         $this->assertNotNull($result);
 
+        $this->assertNotNull($result->product);
+
+        $this->assertEquals($product->id, $result->product_id);
         $this->assertEquals(1, $result->quantity);
         $this->assertEquals(2, $result->unit_cost);
         $this->assertEquals(3, $result->selling_price);

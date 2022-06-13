@@ -2,18 +2,20 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Product;
 use App\Models\Sale;
 use Livewire\Component;
 
 class RecordSales extends Component
 {
-    public $quantity, $unitCost, $sellingPrice;
+    public $product, $quantity, $unitCost, $sellingPrice;
 
     public $margin = 0.25;
 
     public $shippingCost = 10;
 
     protected $rules = [
+        'product' => 'required|numeric|exists:products,id',
         'quantity' => 'required|numeric|min:1',
         'unitCost' => 'required|numeric|min:0.01',
     ];
@@ -22,10 +24,12 @@ class RecordSales extends Component
     {
         $this->sellingPrice = null;
 
-        if ($this->quantity && $this->unitCost) {
+        if ($this->product && $this->quantity && $this->unitCost) {
             $this->validate();
 
-            $this->sellingPrice = round((($this->unitCost * $this->quantity)  / ( 1 - $this->margin ) ) + $this->shippingCost, 2);
+            $product = Product::findOrFail($this->product);
+
+            $this->sellingPrice = round((($this->unitCost * $this->quantity)  / ( 1 - $product->margin ) ) + $this->shippingCost, 2);
         }
     }
 
@@ -33,8 +37,9 @@ class RecordSales extends Component
     {
         $this->validate();
 
-        Sale::recordSale($this->quantity, $this->unitCost, $this->sellingPrice);
+        Sale::recordSale($this->product, $this->quantity, $this->unitCost, $this->sellingPrice);
 
+        $this->product = null;
         $this->quantity = null;
         $this->unitCost = null;
         $this->sellingPrice = null;
@@ -42,9 +47,13 @@ class RecordSales extends Component
 
     public function render()
     {
+        $products = Product::orderBy('name')
+            ->pluck('name', 'id');
+
         $sales = Sale::latest()
+            ->with('product')
             ->get();
 
-        return view('livewire.record-sales', compact('sales'));
+        return view('livewire.record-sales', compact('products', 'sales'));
     }
 }

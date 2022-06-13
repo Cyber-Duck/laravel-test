@@ -16,15 +16,27 @@ class Sale extends Model
     ];
 
     /**
+     * Defines the belongs to relationship to products
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
+
+    /**
      * Records a sale
+     * @param  int    $productId
      * @param  int    $quantity
      * @param  float  $unitCost
      * @param  float  $sellingPrice
      * @return Sale
      */
-    public static function recordSale(int $quantity, float $unitCost, float $sellingPrice): Sale
+    public static function recordSale(int $productId, int $quantity, float $unitCost, float $sellingPrice): Sale
     {
-        return self::create([
+        $product = Product::firstOrFail();
+
+        return $product->sales()->create([
             'quantity' => $quantity,
             'unit_cost' => $unitCost,
             'selling_price' => $sellingPrice,
