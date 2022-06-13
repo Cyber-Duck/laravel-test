@@ -48,3 +48,9 @@ To access the local database you can connect to it from TablePlus and other soft
 - user: root
 - password: root
 - database: project
+
+## Ubuntu Set Up
+
+If you are running a LAMP server locally, then you can set up the application as a standard Laravel application.
+
+* `php artisan serve` - Starts the environment
