@@ -7,3 +7,7 @@ Automatically setup with: `make install`, so please add any other necessary step
 * `docker-compose exec php-fpm t` <-- alias to run `phpunit` from within the `/vendor` folder.
 * `docker-compose exec php-fpm php artisan test`
 * `docker-compose exec php-fpm php artisan dusk`
+
+## On Ubuntu
+
+* `php artisan test` - Runs the tests
