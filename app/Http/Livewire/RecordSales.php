@@ -43,6 +43,10 @@ class RecordSales extends Component
     {
         $this->validate();
 
+        if (!$this->sellingPrice) {
+            $this->sellingPrice = round((($this->unitCost * $this->quantity)  / ( 1 - $product->margin ) ) + $this->shippingCost, 2);
+        }
+
         Sale::recordSale($this->product, $this->quantity, $this->unitCost, $this->sellingPrice);
 
         $this->product = null;
