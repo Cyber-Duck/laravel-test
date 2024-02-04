@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CoffeeSalesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,7 +17,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return redirect()->route('login');
 });
-
+Route::controller(CoffeeSalesController::class)->group(function () {
+    Route::get('/salesdashboard', 'dashboard')->name('dashboard');
+    Route::get('/salesdashboard2', 'dashboard2')->name('dashboard2');
+    Route::post('/newsale', 'newsale')->name('newsale');
+    Route::post('/newsale1', 'newsale1')->name('newsale1');
+});
 Route::redirect('/dashboard', '/sales');
 
 Route::get('/sales', function () {

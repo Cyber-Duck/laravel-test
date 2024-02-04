@@ -25,6 +25,14 @@
                 @endif    
                 <form id="submitform"   method="post" > 
                 @csrf
+                Product:
+                <select id="product">
+                    <option>Select</option>
+                    <option value="1">Arabic Coffe</option>
+                    <option value="2">Gold Coffe</option>
+                </select>
+                <br>
+            <br> 
             Quantity:
             <input type="text" id="qty" name="name">
             <br>
@@ -44,23 +52,26 @@
         <table class="table table-striped">
   <thead>
     <tr>
-     <th scope="col">#</th> 
+      <th scope="col">#</th> 
+     <th scope="col">Product</th>
       <th scope="col">Quantity</th>
       <th scope="col">Unit Cost</th>
       <th scope="col">Selling Price</th>
+      <th scope="col">Sold at</th>
     </tr>
   </thead>
   <tbody>
-  @foreach($previous_sales as $sale)
+  @foreach($previous_sales as $user)
    <tr>
-       <th scope="row">{{ $sale->id }}</th> 
-      <td>{{ $sale->qty }}</td>
-      <td>{{ $sale->price }}</td>
-      <td>{{ $sale->selling_price }}</td>
+       <th scope="row">{{ $user->id }}</th> 
+       <td>{{ $user->product }}</td>
+      <td>{{ $user->qty }}</td>
+      <td>{{ $user->price }}</td>
+      <td>{{ $user->selling_price }}</td>
+      <td>{{ $user->created_at }}</td>
     </tr>
 @endforeach     
-  </tbody>
-</table>          
+  </tbody>        
             </div>
         </div>
     </div>    
@@ -75,20 +86,23 @@
   $(document).ready(function() { // alert("AAAAA");
     $('#submitform').submit(function (event) {  //alert("AAAAA"); 
    event.preventDefault();
+   productval = $("#product option:selected").val();  
+   productname = $("#product option:selected").text(); 
+    
     qty = $("#qty").val();
     cost = $("#cost").val();
    $.ajaxSetup({
 
-headers: {
-    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+headers: { 
+    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') 
 } 
 });  
    $.ajax({
       type: "POST",
-      url: "{{ route('newsale') }}",
+      url: "{{ route('newsale1') }}",
       dataType: 'JSON',
       cache: false,
-      data: {qty:qty, cost:cost},
+      data: {productname:productname, productval:productval,qty:qty, cost:cost},
       //data: $(this).serialize(),
        success: function (data) {  
         console.log(data.success); 
