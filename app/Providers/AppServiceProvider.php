@@ -3,6 +3,9 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Contracts\CoffeePriceCalculator;
+use App\Services\GoldCoffeePrice;
+use App\Services\ArabicCoffeePrice;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,7 +16,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->bind(CoffeePriceCalculator::class, GoldCoffeePrice::class);
+        $this->app->bind(CoffeePriceCalculator::class, ArabicCoffeePrice::class);
+        $this->app->bind(CoffeeController::class, CoffeePriceCalculator::class);
     }
 
     /**
