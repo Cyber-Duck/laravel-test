@@ -20,7 +20,7 @@
                             <label for="quantity">Quantity:</label>
                             <input type="number" name="quantity" id="quantity" required>
                             <label for="unit_cost">Unit Cost (£):</label>
-                            <input type="number" name="unit_cost" id="unit_cost" required>
+                            <input type="number" name="unit_cost" id="unit_cost" step='0.1' required>
                             <button type="submit">Calculate</button>
                         </form>
                     </div>

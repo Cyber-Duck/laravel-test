@@ -33,7 +33,21 @@ class CoffeeController extends Controller
     public function store(Request $request)
     {
         // Logic to determine the type of coffee product selected
-        echo $coffeeType = $request->input('coffee_type');
+         // Validate the request data
+        try{    
+            $validatedData = $request->validate([
+                'quantity' => 'required|integer|min:1',
+                'unit_cost' => 'required|numeric|min:0.1',
+                'coffee_type' => 'required|string'
+            ]);
+        }
+        catch (ValidationException $e) {
+        // Validation failed, handle the exception
+        // You can access the validation errors using $e->errors() method
+            return response()->json(['error' => $e->errors()], 422);
+        }
+
+        $coffeeType = $request->input('coffee_type');       
 
         // Instantiate the appropriate adapter based on the coffee type
         switch ($coffeeType) {
