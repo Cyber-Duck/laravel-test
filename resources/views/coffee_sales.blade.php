@@ -12,6 +12,11 @@
                     <div>
                         <form action="{{ url('sales') }}" method="post">
                             @csrf
+                            <label for="Coffee Type">Coffee Type:</label>
+                            <select name="coffee_type" id="coffee_type">
+                                <option value="gold">Gold</option>
+                                <option value="arabic">Arabic</option>
+                            </select>
                             <label for="quantity">Quantity:</label>
                             <input type="number" name="quantity" id="quantity" required>
                             <label for="unit_cost">Unit Cost (£):</label>
@@ -20,9 +25,11 @@
                         </form>
                     </div>
                     <div>
+                       @if($coffeSalesData) 
                        <div> 
-                            <x-table-with-border :headers="['Quantity', 'Unit Cost (£):', 'Selling Price']" :data="$coffeSalesData" />
-                        </div>    
+                            <x-table-with-border :headers="['Coffee Type','Quantity', 'Unit Cost (£):', 'Selling Price']" :data="$coffeSalesData" />
+                        </div>   
+                       @endif  
                     </div>    
                 </div>   
             </div>

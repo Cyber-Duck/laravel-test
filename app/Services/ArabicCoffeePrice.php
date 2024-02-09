@@ -4,18 +4,18 @@ use Illuminate\Support\Facades\Config;
 
 use App\Contracts\CoffeePriceCalculator;
 
-class GoldCoffeePrice implements CoffeePriceCalculator
+class ArabicCoffeePrice implements CoffeePriceCalculator
 {
     public function calculateSellingPrice(int $quantity, float $unitCost): array
     {
         //geting profit margin and shipping cost
         $shippingCost = config('sales.shipping_cost');
-        $profitMargin = config('sales.profit_margin');
+        $profitMargin = config('sales.profit_margin_arabic');
 
         // Calculation logic specific to Gold Coffee  // 
         $totalCost = $quantity * $unitCost;
         $sellingPrice = ($totalCost / (1 -$profitMargin )) + $shippingCost; 
-
+        
         // Store the data for displaying in the grid
         $data = [
             'quantity' => $quantity,
