@@ -20,27 +20,12 @@
                         </form>
                     </div>
                     <div>
-                        <!-- Result -->
-                            <table class="border-collapse border border-gray-400 mt-4">
-                                <thead>
-                                    <tr>
-                                        <th class="border border-gray-400 px-4 py-2">Quantity</th>
-                                        <th class="border border-gray-400 px-4 py-2">Unit Cost</th>
-                                        <th class="border border-gray-400 px-4 py-2">Selling Price</th>
-
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td class="border border-gray-400 px-4 py-2"></td>
-                                        <td class="border border-gray-400 px-4 py-2"></td>                                    
-                                        <td class="border border-gray-400 px-4 py-2"></td>
-                                    </tr>
-                        </tbody>
-                    </table>
+                       <div> 
+                            <x-table-with-border :headers="['Quantity', 'Unit Cost (£):', 'Selling Price']" :data="$coffeSalesData" />
+                        </div>    
                     </div>    
                 </div>   
             </div>
         </div>
-    </div>
+    </div>    
 </x-app-layout>
